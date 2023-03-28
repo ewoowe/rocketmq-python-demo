@@ -7,6 +7,7 @@ from NodeDiscoverMessage import json2NodeDiscoverMessage
 
 
 def callback(msg):
+    print(msg.body)
     node = json.loads(msg.body, object_hook=json2NodeDiscoverMessage)
     print(node)
     return ConsumeStatus.CONSUME_SUCCESS

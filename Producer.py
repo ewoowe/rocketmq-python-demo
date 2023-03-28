@@ -10,6 +10,8 @@ producer.start()
 
 for node in nodes:
     msg = Message('NodeDiscovery')
-    msg.set_body(json.dumps(node, default=NodeDiscoverMessage2json))
+    json = json.dumps(node, default=NodeDiscoverMessage2json)
+    print(json)
+    msg.set_body(json)
     ret = producer.send_sync(msg)
 producer.shutdown()
