@@ -9,7 +9,7 @@ from NodeDiscoverMessage import json2NodeDiscoverMessage
 def callback(msg):
     print(msg.body)
     node = json.loads(msg.body, object_hook=json2NodeDiscoverMessage)
-    print(node)
+    print('node: nodeId=%s, ip=%s, type=%s' % (node.nodeId, node.ip, node.type))
     return ConsumeStatus.CONSUME_SUCCESS
 
 consumer = PushConsumer('NM4')
