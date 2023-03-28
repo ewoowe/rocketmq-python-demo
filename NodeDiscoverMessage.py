@@ -1,11 +1,10 @@
 from enum import Enum
-from pydantic import BaseModel
 
 NodeType = Enum('NodeType', ('CN_TP_Nokia_FDDLTE', 'CN_TP_Nokia_5GNR', 'AN_TP_Nokia_FDDLTE', 'AN_TP_Nokia_5GNR',
                              'AN_ICTNJ_FDDLTE', 'AN_ICTNJ_5GNR', 'AN_ICTNJ_NORMAL'))
 
 
-class NodeDiscoverMessage(BaseModel):
+class NodeDiscoverMessage():
     nodeId: str = None
     ip: str = None
     type: NodeType = None
@@ -14,6 +13,16 @@ class NodeDiscoverMessage(BaseModel):
         self.nodeId = nodeId
         self.ip = ip
         self.type = type
+
+def json2NodeDiscoverMessage(dict_json):
+    return NodeDiscoverMessage(dict_json['nodeId'], dict_json['ip'], dict_json['type'])
+
+def NodeDiscoverMessage2json(node):
+    return {
+        'nodeId': node.nodeId,
+        'ip': node.ip,
+        'type': node.type.name
+    }
 
 node1 = NodeDiscoverMessage('1', '127.0.0.1', NodeType.CN_TP_Nokia_FDDLTE)
 node2 = NodeDiscoverMessage('2', '127.0.0.2', NodeType.CN_TP_Nokia_5GNR)

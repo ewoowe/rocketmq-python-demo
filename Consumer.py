@@ -3,11 +3,8 @@ import time
 
 from rocketmq.client import PushConsumer, ConsumeStatus
 
-from NodeDiscoverMessage import NodeDiscoverMessage
+from NodeDiscoverMessage import json2NodeDiscoverMessage
 
-
-def json2NodeDiscoverMessage(dict_json):
-    return NodeDiscoverMessage(dict_json['nodeId'], dict_json['ip'], dict_json['type'])
 
 def callback(msg):
     node = json.loads(msg.body, object_hook=json2NodeDiscoverMessage)
