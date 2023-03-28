@@ -13,7 +13,7 @@ def callback(msg):
 
 consumer = PushConsumer('nm1')
 consumer.set_name_server_address('127.0.0.1:9876')
-consumer.subscribe('NodeDiscovery', callback)
+consumer.subscribe('NodeDiscover', callback)
 consumer.start()
 
 while True:

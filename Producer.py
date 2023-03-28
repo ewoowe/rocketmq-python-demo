@@ -9,7 +9,7 @@ producer.set_name_server_address('127.0.0.1:9876')
 producer.start()
 
 for node in nodes:
-    msg = Message('NodeDiscovery')
+    msg = Message('NodeDiscover')
     json_str = json.dumps(node, default=NodeDiscoverMessage2json)
     print(json_str)
     msg.set_body(json_str)
